@@ -3,6 +3,9 @@ package com.grp2055.restbackend;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+// Build jar: mvnw clean package
+// Run jar: mvnw spring-boot:run
 @SpringBootApplication
 public class RestBackendApplication {
 
