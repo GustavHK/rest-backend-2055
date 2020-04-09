@@ -1,32 +1,21 @@
-package DTO;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+package com.grp2055.restbackend.models;
 
 public class   User {
+
+
+    int id;
+    String firstName;
+    String lastName;
+    String email;
+    boolean isAdmin;
+
+
     public User( int id,  String firstName,  String lastName,  String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
-
-
-    int id;
-
-
-    String firstName;
-
-
-    String lastName;
-
-
-    String email;
-
-
-    boolean isAdmin;
-
 
     public int getId() {
         return id;
