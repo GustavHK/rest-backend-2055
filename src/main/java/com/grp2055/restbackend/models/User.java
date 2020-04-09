@@ -1,51 +1,54 @@
 package com.grp2055.restbackend.models;
 
-public class   User {
+
+import javax.persistence.Entity;
+
+@Entity
+public class User extends BaseEntity {
 
 
-    int id;
-    String firstName;
-    String lastName;
-    String email;
+    protected User (){
+        super(); // Henter id fra baseentity
+    }
+
+    int userId;
+    int bookingId;
     boolean isAdmin;
 
+    public User(boolean isAdmin, int userId) {
+        this();
+        this.isAdmin = isAdmin;
+        this.userId = userId;
 
-    public User( int id,  String firstName,  String lastName,  String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int id) {
+        this.userId = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public boolean getAdminStatus() {
+        return isAdmin;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setAdminStatus(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
-    public String getLastName() {
-        return lastName;
+    public int getBookingId() {
+        return bookingId;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setBookingId(int bookingId) {
+        this.bookingId= bookingId;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+
+
+
+
 }
