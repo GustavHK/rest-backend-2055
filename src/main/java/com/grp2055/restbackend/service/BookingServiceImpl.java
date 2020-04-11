@@ -1,6 +1,6 @@
 package com.grp2055.restbackend.service;
 
-import com.grp2055.restbackend.models.Booking;
+import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.repositories.BookingRepo;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +27,10 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking saveBooking(Booking booking) {
         return bookingRepo.save(booking);
+    }
+
+    @Override
+    public void deleteBooking(Long id) {
+        bookingRepo.deleteById(id);
     }
 }

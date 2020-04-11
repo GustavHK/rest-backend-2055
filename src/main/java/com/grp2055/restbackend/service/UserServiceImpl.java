@@ -1,8 +1,10 @@
 package com.grp2055.restbackend.service;
 
-import com.grp2055.restbackend.models.User;
+import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.repositories.UserRepo;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -20,13 +22,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findBookingId(Long id) {
-        return userRepo.findById(id).get();
+    public List<User> findAllUsers() {
+        return userRepo.findAll();
     }
-//Her
-    @Override
-    public User getAdminStatus(boolean isAdmin) {
-        return userRepo.(isAdmin);
-    }
+
 
 }

@@ -1,6 +1,6 @@
 package com.grp2055.restbackend.service;
 
-import com.grp2055.restbackend.models.Room;
+import com.grp2055.restbackend.domain.Room;
 import com.grp2055.restbackend.repositories.RoomRepo;
 import org.springframework.stereotype.Service;
 

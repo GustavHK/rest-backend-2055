@@ -1,14 +1,18 @@
 package com.grp2055.restbackend.controllers;
 
 
+import com.grp2055.restbackend.domain.Booking;
+import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping(UserController.URL)
 public class UserController {
-    public static final String URL = "/user";
-
+    public static final String URL = "/users";
 
     private final UserService userService;
 
@@ -16,12 +20,24 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public User getUserById(@PathVariable Long id){
+        return userService.findUserById(id);
+    }
 
-    //Her
-    @GetMapping
-        boolean getAdminStatus() {
-            return userService.find;
-        }
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public List<User> getAllUsers(){
+        return userService.findAllUsers();
+    }
+
+    @PostMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addBooking(@PathVariable Long id, @RequestBody Booking booking){
+        userService.findUserById(id).addBooking(booking);
+    }
+
 
 
 }

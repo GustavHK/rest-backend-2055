@@ -1,14 +1,10 @@
-package com.grp2055.restbackend.models;
+package com.grp2055.restbackend.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Booking extends BaseEntity{
 
-    int userId;
     int timeblock;
     int roomId;
     // Ved ikke helt hvordan date skal laves endnu
@@ -19,17 +15,8 @@ public class Booking extends BaseEntity{
 
     public Booking (int userId, int timeblock, int roomId){
         this(); // Henter id fra Booking() uden argumenter, hvis klassen instantieres her fra.
-        this.userId = userId;
         this.timeblock = timeblock;
         this.roomId = roomId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public int getTimeblock() {

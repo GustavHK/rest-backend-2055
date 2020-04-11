@@ -1,7 +1,6 @@
 package com.grp2055.restbackend.service;
 
-import com.grp2055.restbackend.models.Room;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.grp2055.restbackend.domain.Room;
 
 import java.util.List;
 

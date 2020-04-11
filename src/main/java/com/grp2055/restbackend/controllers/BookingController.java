@@ -1,7 +1,7 @@
 package com.grp2055.restbackend.controllers;
 
 
-import com.grp2055.restbackend.models.Booking;
+import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.service.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +20,13 @@ public class BookingController {
 
 
     @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
     List<Booking> getAllBookings(){
         return bookingService.findAllBookings();
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Booking getBookingById(@PathVariable Long id){
         return bookingService.findBookingById(id);
     }
@@ -33,6 +35,12 @@ public class BookingController {
     @ResponseStatus(HttpStatus.CREATED)
     public Booking createBooking(@RequestBody Booking booking){
         return bookingService.saveBooking(booking);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteBooking(@PathVariable Long id){
+        bookingService.deleteBooking(id);
     }
 
 
