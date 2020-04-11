@@ -1,0 +1,12 @@
+
+
+Bruger diplomportalen til sql
+
+host: db.diplomportal.dk
+brugernavn: s180077
+kode: d2sQ57OKMrupbueVUd8d9
+
+
+databasen er sat op i application.properties, og bliver så styret igennem @-tags
+vha. springs framework.
+

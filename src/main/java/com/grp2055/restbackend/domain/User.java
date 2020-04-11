@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table()
 public class User extends BaseEntity {
 
 
@@ -16,7 +17,7 @@ public class User extends BaseEntity {
     String lastName;
     boolean isAdmin;
 
-@ElementCollection
+    @ElementCollection
     private List<Long> bookingList;
 
 

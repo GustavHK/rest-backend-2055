@@ -31,7 +31,7 @@ public class BookingController {
         return bookingService.findBookingById(id);
     }
 
-    @PostMapping
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public Booking createBooking(@RequestBody Booking booking){
         return bookingService.saveBooking(booking);

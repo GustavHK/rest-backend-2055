@@ -1,3 +1,5 @@
+/*
+
 package com.grp2055.restbackend.fakeData;
 
 import com.grp2055.restbackend.domain.Booking;
@@ -64,3 +66,5 @@ public class DataSetup implements CommandLineRunner {
 
     }
 }
+
+*/
