@@ -1,6 +1,7 @@
 package com.grp2055.restbackend.controllers;
 
 import com.grp2055.restbackend.domain.Room;
+import com.grp2055.restbackend.repositories.RoomRepo;
 import com.grp2055.restbackend.service.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class RoomController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Room findRoomById(@PathVariable Long id){
+    Room findRoomById(@PathVariable int id){
         return roomService.findRoomById(id);
     }
 

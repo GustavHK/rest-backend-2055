@@ -27,7 +27,7 @@ public class BookingController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Booking getBookingById(@PathVariable Long id){
+    public Booking getBookingById(@PathVariable int id){
         return bookingService.findBookingById(id);
     }
 
@@ -39,7 +39,7 @@ public class BookingController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteBooking(@PathVariable Long id){
+    public void deleteBooking(@PathVariable int id){
         bookingService.deleteBooking(id);
     }
 

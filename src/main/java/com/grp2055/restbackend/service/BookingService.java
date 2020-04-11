@@ -5,8 +5,8 @@ import com.grp2055.restbackend.domain.Booking;
 import java.util.List;
 
 public interface BookingService {
-    Booking findBookingById(Long id);
+    Booking findBookingById(int id);
     List<Booking> findAllBookings();
     Booking saveBooking(Booking booking);
-    void deleteBooking(Long id);
+    void deleteBooking(int id);
 }

@@ -5,6 +5,6 @@ import com.grp2055.restbackend.domain.User;
 import java.util.List;
 
 public interface UserService {
-    User findUserById(Long id);
+    User findUserById(int id);
     List<User> findAllUsers();
 }

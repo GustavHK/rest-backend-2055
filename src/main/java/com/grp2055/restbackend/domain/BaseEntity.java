@@ -3,19 +3,17 @@ package com.grp2055.restbackend.domain;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 @Data
 public class BaseEntity {
 
+    @Column(name="id", unique = true, nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final Long id;
+    private final int id;
     protected BaseEntity() {
-        id = null;
+        id = 0;
     }
 }

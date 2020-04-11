@@ -1,69 +1,45 @@
 package com.grp2055.restbackend.domain;
 
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table()
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Table(name="user")
 public class User extends BaseEntity {
-
-
     protected User() {
         super(); // Henter id fra baseentity
     }
 
+    @Column(name = "first_name")
     String firstName;
+    @Column(name = "last_name")
     String lastName;
-    boolean isAdmin;
-
-    @ElementCollection
-    private List<Long> bookingList;
+    @Column(name="is_admin")
+    boolean isAdmin = false;
 
 
+    @ElementCollection()
+    @CollectionTable(name="booking", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name="id")
+    private Set<Integer> bookingList = new HashSet<>();
 
 
-    public User(boolean isAdmin, String firstName, String lastName) {
+    public User(String firstName, String lastName) {
         this();
-        this.isAdmin = isAdmin;
         this.firstName = firstName;
         this.lastName = lastName;
-
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    public void addBooking(Booking booking) {
-        bookingList.add(booking.getId());
-    }
-
-    public void removeBooking(Long bookingId) { //Der skal muligvis implementeres noget til hvis der ikke er et møde med det id man vil slette.
-        for (int i = 0; i < bookingList.size(); i++) {
-            //  if (bookingList.get(i).getId() == bookingId){
-            bookingList.remove(i);
-            break;
-        }
+    public void addBooking(int id) {
+        bookingList.add(id);
     }
 }

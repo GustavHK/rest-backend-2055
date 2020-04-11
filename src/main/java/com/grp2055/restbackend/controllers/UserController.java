@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public User getUserById(@PathVariable Long id){
+    public User getUserById(@PathVariable int id){
         return userService.findUserById(id);
     }
 
@@ -32,10 +32,10 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{id}") // måske forkert da man ikke kender det id man skal bruge?
     @ResponseStatus(HttpStatus.CREATED)
-    public void addBooking(@PathVariable Long id, @RequestBody Booking booking){
-        userService.findUserById(id).addBooking(booking);
+    public void addBooking(@PathVariable int id, @RequestBody Booking booking){
+        userService.findUserById(id).addBooking(booking.getId());
     }
 
 
