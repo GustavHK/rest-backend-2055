@@ -21,15 +21,19 @@ public class Booking extends BaseEntity{
     @Column(name="user_id")
     int userId;
 
-    // Overvejer at lave en string til år måned og dag, så det bliver nemmere at søge i.
-    @Column(name="date")
-    String date;
-    // Ved ikke helt hvordan date skal laves endnu
+    @Column(name="month")
+    int month;
+
+    @Column(name="year")
+    int year;
+
+    @Column(name="day")
+    int day;
+
 
     protected Booking(){
     super(); // Henter id fra baeentity
     }
-
 
     public Booking (int userId){
         this(); // Henter id fra Booking() uden argumenter, hvis klassen instantieres her fra.

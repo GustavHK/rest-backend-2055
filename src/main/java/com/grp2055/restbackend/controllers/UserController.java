@@ -6,7 +6,6 @@ import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -37,7 +36,4 @@ public class UserController {
     public void addBooking(@PathVariable int id, @RequestBody Booking booking){
         userService.findUserById(id).addBooking(booking.getId());
     }
-
-
-
 }
