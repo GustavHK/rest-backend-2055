@@ -28,4 +28,17 @@ public class RoomServiceImpl implements RoomService {
     public Room createNewRoom(Room room) {
         return roomRepo.save(room);
     }
+
+    @Override
+    public List<Room> findBySizeGreaterThan(int Size) {
+        return roomRepo.findBySizeGreaterThan(Size);
+    }
+
+    @Override
+    public boolean deleteRoom(int id) {
+        roomRepo.deleteById(id);
+        return true;
+    }
+
+
 }

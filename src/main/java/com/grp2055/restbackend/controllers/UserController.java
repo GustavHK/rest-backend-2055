@@ -36,4 +36,12 @@ public class UserController {
     public void addBooking(@PathVariable int id, @RequestBody Booking booking){
         userService.findUserById(id).addBooking(booking.getId());
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    boolean deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
+        return true;
+    }
+
 }

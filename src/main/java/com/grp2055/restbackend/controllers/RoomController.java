@@ -1,7 +1,6 @@
 package com.grp2055.restbackend.controllers;
 
 import com.grp2055.restbackend.domain.Room;
-import com.grp2055.restbackend.repositories.RoomRepo;
 import com.grp2055.restbackend.service.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +34,18 @@ public class RoomController {
     @ResponseStatus(HttpStatus.CREATED)
     Room createNewRoom(Room room){
         return roomService.createNewRoom(room);
+    }
+
+    @GetMapping("/{size}")
+    @ResponseStatus(HttpStatus.OK)
+    List<Room> findGreater(@PathVariable int size){
+        return roomService.findBySizeGreaterThan(size);
+
+}
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    boolean deleteRoom(@PathVariable int id){
+        return roomService.deleteRoom(id);
     }
 
 }

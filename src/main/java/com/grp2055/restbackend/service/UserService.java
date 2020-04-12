@@ -7,4 +7,5 @@ import java.util.List;
 public interface UserService {
     User findUserById(int id);
     List<User> findAllUsers();
+    boolean deleteUser(int id);
 }

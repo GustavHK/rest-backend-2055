@@ -4,7 +4,6 @@ import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.repositories.BookingRepo;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -34,4 +33,7 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(int id) {
         bookingRepo.deleteById(id);
     }
+
+
+
 }
