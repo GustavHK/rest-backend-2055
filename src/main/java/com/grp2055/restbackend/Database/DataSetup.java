@@ -40,13 +40,13 @@ public class DataSetup implements CommandLineRunner {
                 // roomRepo.save(room);
 
                 //Manuel bookingoprettelse
-                //Booking booking = new Booking(userRepo.getOne(1).getId());
-                //booking.setYear(2020);
-                //booking.setMonth(12);
-                //booking.setDay(10);
-                //booking.setTimeblock(3);
-                //booking.setRoomId(1);
-                //bookingRepo.save(booking);
+                Booking booking = new Booking(userRepo.getOne(1).getId());
+                booking.setYear(2019);
+                booking.setMonth(12);
+                booking.setDay(10);
+                booking.setTimeblock(3);
+                booking.setRoomId(1);
+                bookingRepo.save(booking);
     }
 }
 
