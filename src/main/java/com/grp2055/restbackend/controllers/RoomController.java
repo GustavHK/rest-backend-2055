@@ -41,6 +41,7 @@ public class RoomController {
     List<Room> find_min(@PathVariable int size){
         return roomService.findBySizeGreaterThan(size);
     }
+
     @GetMapping("/max_size/{size}")
     @ResponseStatus(HttpStatus.OK)
     List<Room> find_max(@PathVariable int size){

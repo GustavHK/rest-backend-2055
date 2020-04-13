@@ -22,8 +22,6 @@ public class BookingController {
     public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
-
-
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getAllBookings(){
@@ -36,14 +34,16 @@ public class BookingController {
         return bookingService.findBookingById(id);
     }
 
+
     @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
     public Booking createBooking(@RequestBody Booking booking){
         return bookingService.saveBooking(booking);
     }
 
+
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.OK)
     public void deleteBooking(@PathVariable int id){
         bookingService.deleteBooking(id);
     }
@@ -62,7 +62,6 @@ public class BookingController {
         return bookingService.findUpcomingRoomBookings(id);
     }
 
-
     @GetMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getallUserBookings
@@ -70,12 +69,11 @@ public class BookingController {
         return  bookingService.findUserBookings(id);
     }
 
+
     @GetMapping("/user/{id}/upcoming")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getUserUpcomingMeetings
             (@PathVariable int id){
         return bookingService.findUpcomingUserBookings(id);
-
     }
-
 }

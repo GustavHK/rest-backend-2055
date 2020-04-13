@@ -2,7 +2,10 @@ package com.grp2055.restbackend.service;
 
 import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.repositories.BookingRepo;
+import com.sun.deploy.net.HttpResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -46,7 +49,11 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking saveBooking(Booking booking) {
-        return bookingRepo.save(booking);
+        if (bookingRepo.existsById(booking.getId())){
+            System.out.println("Booking with same id already exist");
+            return null;
+        }
+        else { return bookingRepo.save(booking); }
     }
 
     @Override

@@ -36,8 +36,4 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
                     "ELSE any_value(day) end",
             nativeQuery = true)
     List<Booking> findRoomUpcomingBookings(int id);
-
-
-
-
 }

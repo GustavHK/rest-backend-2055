@@ -31,11 +31,13 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    @PostMapping("/{id}") // måske forkert da man ikke kender det id man skal bruge?
+    /*
+    @PostMapping("/{id}/addbooking") // måske forkert da man ikke kender det id man skal bruge?
     @ResponseStatus(HttpStatus.CREATED)
     public void addBooking(@PathVariable int id, @RequestBody Booking booking){
         userService.findUserById(id).addBooking(booking.getId());
     }
+     */
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
