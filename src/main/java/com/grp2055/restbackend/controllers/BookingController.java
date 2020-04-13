@@ -4,11 +4,13 @@ package com.grp2055.restbackend.controllers;
 import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.service.BookingService;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Book;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -46,41 +48,33 @@ public class BookingController {
         bookingService.deleteBooking(id);
     }
 
-    @GetMapping("/user/{id}/upcoming")
+
+    @GetMapping("/room/{id}")
     @ResponseStatus(HttpStatus.OK)
-    List<Booking> getUserUpcomingMeetings
-            (@PathVariable int id){
-        List<Booking> allBookings = bookingService.findUserBookings(id);
-        List<Booking> upcoming = new ArrayList<>();
-        LocalDateTime now = LocalDateTime.now();
-        System.out.println("TID HALLO" +now);
-        int year = now.getYear();
-        int month = now.getMonth().getValue();
-        int day = now.getDayOfMonth();
-        for (int i = 0; i < allBookings.size(); i++) {
-            Booking booking = allBookings.get(i);
-            System.out.println(booking.getYear()+" " +booking.getMonth()+" " +booking.getDay());
-            if (booking.getYear() > year){
-                upcoming.add(booking);
-            } else if (booking.getYear() == year && booking.getMonth() > month) {
-                upcoming.add(booking);
-            }
-            else if( booking.getYear() == year && booking.getMonth() == month && booking.getDay() >= day){
-                upcoming.add(booking);
-            }
-        }
-        return upcoming;
+    List<Booking> getAllRoomBookings(@PathVariable int id){
+        return bookingService.findRoomBookings(id);
     }
 
-    @GetMapping("/user/{id}/")
+    @GetMapping("/room/{id}/upcoming")
+    @ResponseStatus(HttpStatus.OK)
+    List<Booking> getRoomsUpcomingMeetings
+            (@PathVariable int id){
+        return bookingService.findUpcomingRoomBookings(id);
+    }
+
+
+    @GetMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getallUserBookings
             (@PathVariable int id){
         return  bookingService.findUserBookings(id);
+    }
 
-
-
-
+    @GetMapping("/user/{id}/upcoming")
+    @ResponseStatus(HttpStatus.OK)
+    List<Booking> getUserUpcomingMeetings
+            (@PathVariable int id){
+        return bookingService.findUpcomingUserBookings(id);
 
     }
 

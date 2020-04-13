@@ -7,7 +7,8 @@ import java.util.List;
 
 @Repository
 public interface RoomRepo extends JpaRepository<Room, Integer> {
-    List<Room> findBySizeGreaterThan(int Size);
+    List<Room> findBySizeGreaterThanEqual(int Size);
+    List<Room> findBySizeLessThanEqual(int Size);
 }
 
 

@@ -30,6 +30,21 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public List<Booking> findUpcomingUserBookings(int id) {
+        return bookingRepo.findUserUpcomingBookings(id);
+    }
+
+    @Override
+    public List<Booking> findUpcomingRoomBookings(int id) {
+        return bookingRepo.findRoomUpcomingBookings(id);
+    }
+
+    @Override
+    public List<Booking> findRoomBookings(int id) {
+        return bookingRepo.findBookingsByRoomId(id);
+    }
+
+    @Override
     public Booking saveBooking(Booking booking) {
         return bookingRepo.save(booking);
     }

@@ -31,7 +31,12 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<Room> findBySizeGreaterThan(int Size) {
-        return roomRepo.findBySizeGreaterThan(Size);
+        return roomRepo.findBySizeGreaterThanEqual(Size);
+    }
+
+    @Override
+    public List<Room> findBySizeLessThan(int Size) {
+        return roomRepo.findBySizeLessThanEqual(Size);
     }
 
     @Override

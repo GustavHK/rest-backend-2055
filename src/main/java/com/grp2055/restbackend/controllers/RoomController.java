@@ -36,12 +36,19 @@ public class RoomController {
         return roomService.createNewRoom(room);
     }
 
-    @GetMapping("/{size}")
+    @GetMapping("/min_size/{size}")
     @ResponseStatus(HttpStatus.OK)
-    List<Room> findGreater(@PathVariable int size){
+    List<Room> find_min(@PathVariable int size){
         return roomService.findBySizeGreaterThan(size);
+    }
+    @GetMapping("/max_size/{size}")
+    @ResponseStatus(HttpStatus.OK)
+    List<Room> find_max(@PathVariable int size){
+        return roomService.findBySizeLessThan(size);
+    }
 
-}
+
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     boolean deleteRoom(@PathVariable int id){
