@@ -1,11 +1,11 @@
 package com.grp2055.restbackend.controllers;
 
 
-import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -44,6 +44,13 @@ public class UserController {
     boolean deleteUser(@PathVariable int id){
         userService.deleteUser(id);
         return true;
+    }
+
+    @PutMapping()
+    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
+    public User editUser(@RequestBody User user){
+        return userService.editUser(user);
+
     }
 
 }

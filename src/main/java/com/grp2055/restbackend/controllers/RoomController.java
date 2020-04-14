@@ -56,4 +56,11 @@ public class RoomController {
         return roomService.deleteRoom(id);
     }
 
+
+    @PutMapping()
+    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
+    public Room editRoom(@RequestBody Room room){
+        return roomService.editRoom(room);
+
+    }
 }
