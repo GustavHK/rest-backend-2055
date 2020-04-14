@@ -38,8 +38,20 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
     public User createNewUser(User user) {
-        return null;
+      return userRepo.save(user);
     }
 
+    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
+    public User editUser(User user) {
+        if (userRepo.existsById(user.getId())){
+            return userRepo.save(user);
+        }
+        else
+        {
+            System.out.println("No user with this id exist");
+            return null;
+        }
 
-}
+}}
+

@@ -8,7 +8,7 @@ public interface RoomService  {
     Room findRoomById (int Id);
     List<Room> findAllRooms();
     Room createNewRoom(Room room);
-
+    Room editRoom(Room room);
     List<Room> findBySizeGreaterThan(int Size);
     List<Room> findBySizeLessThan(int Size);
     boolean deleteRoom(int id);

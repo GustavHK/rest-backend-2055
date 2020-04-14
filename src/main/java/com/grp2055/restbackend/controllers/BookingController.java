@@ -4,13 +4,8 @@ package com.grp2055.restbackend.controllers;
 import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.service.BookingService;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -76,4 +71,13 @@ public class BookingController {
             (@PathVariable int id){
         return bookingService.findUpcomingUserBookings(id);
     }
+
+    @PutMapping()
+    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
+    public Booking editBooking(@RequestBody Booking booking){
+        return bookingService.editBooking(booking);
+
+    }
+
+
 }

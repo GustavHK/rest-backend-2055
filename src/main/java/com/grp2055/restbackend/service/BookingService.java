@@ -1,9 +1,7 @@
 package com.grp2055.restbackend.service;
 
 import com.grp2055.restbackend.domain.Booking;
-import com.grp2055.restbackend.domain.Room;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface BookingService {
@@ -14,6 +12,7 @@ public interface BookingService {
     List<Booking> findUpcomingRoomBookings(int id);
     List<Booking>findRoomBookings(int id);
     Booking saveBooking(Booking booking);
+    Booking editBooking(Booking booking);
     void deleteBooking(int id);
 
 

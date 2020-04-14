@@ -29,12 +29,6 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE)
-    public Room createNewRoom(Room room) {
-        return roomRepo.save(room);
-    }
-
-    @Override
     public List<Room> findBySizeGreaterThan(int Size) {
         return roomRepo.findBySizeGreaterThanEqual(Size);
     }
@@ -50,6 +44,26 @@ public class RoomServiceImpl implements RoomService {
         roomRepo.deleteById(id);
         return true;
     }
+
+    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
+    public Room editRoom(Room room) {
+        if (roomRepo.existsById(room.getId())){
+            return roomRepo.save(room);
+        }
+        else
+        {
+            System.out.println("No room with this id exist");
+            return null;
+        }
+}
+    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
+    public Room createNewRoom(Room room) {
+        return roomRepo.save(room);
+    }
+
+
 
 
 }

@@ -9,4 +9,5 @@ public interface UserService {
     List<User> findAllUsers();
     boolean deleteUser(int id);
     User createNewUser(User user);
+    User editUser(User user);
 }

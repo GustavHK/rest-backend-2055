@@ -59,6 +59,19 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
+    public Booking editBooking(Booking booking) {
+        if (bookingRepo.existsById(booking.getId())){
+            return bookingRepo.save(booking);
+        }
+        else
+            {
+                System.out.println("No booking with this id exist");
+                return null;
+        }
+    }
+
+    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
     public void deleteBooking(int id) {
         bookingRepo.deleteById(id);
     }
