@@ -3,10 +3,13 @@ package com.grp2055.restbackend.service;
 import com.grp2055.restbackend.domain.Room;
 import com.grp2055.restbackend.repositories.RoomRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class RoomServiceImpl implements RoomService {
     private final  RoomRepo roomRepo;
 
@@ -15,6 +18,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+
     public Room findRoomById(int id) {
       return roomRepo.findById(id).get();
     }
@@ -25,6 +29,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public Room createNewRoom(Room room) {
         return roomRepo.save(room);
     }
@@ -40,6 +45,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
     public boolean deleteRoom(int id) {
         roomRepo.deleteById(id);
         return true;

@@ -2,14 +2,14 @@ package com.grp2055.restbackend.service;
 
 import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.repositories.BookingRepo;
-import com.sun.deploy.net.HttpResponse;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class BookingServiceImpl implements BookingService {
     private final BookingRepo bookingRepo;
 
@@ -48,6 +48,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
     public Booking saveBooking(Booking booking) {
         if (bookingRepo.existsById(booking.getId())){
             System.out.println("Booking with same id already exist");
@@ -57,6 +58,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
     public void deleteBooking(int id) {
         bookingRepo.deleteById(id);
     }

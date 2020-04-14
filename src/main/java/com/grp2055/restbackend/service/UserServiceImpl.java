@@ -3,11 +3,14 @@ package com.grp2055.restbackend.service;
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.repositories.UserRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
 @Service
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
@@ -30,6 +33,12 @@ public class UserServiceImpl implements UserService {
     public boolean deleteUser(int id) {
         userRepo.deleteById(id);
         return true;
+    }
+
+    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
+    public User createNewUser(User user) {
+        return null;
     }
 
 
