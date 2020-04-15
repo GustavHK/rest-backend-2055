@@ -64,7 +64,6 @@ public class BookingController {
         return  bookingService.findUserBookings(id);
     }
 
-
     @GetMapping("/user/{id}/upcoming")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getUserUpcomingMeetings
@@ -78,6 +77,8 @@ public class BookingController {
         return bookingService.editBooking(booking);
 
     }
+
+
 
 
 }

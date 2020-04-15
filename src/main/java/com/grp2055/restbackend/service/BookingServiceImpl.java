@@ -44,7 +44,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Booking> findRoomBookings(int id) {
-        return bookingRepo.findBookingsByRoomId(id);
+        return bookingRepo.findRoomBookings(id);
     }
 
     @Override
