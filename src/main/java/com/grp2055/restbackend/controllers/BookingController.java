@@ -57,6 +57,13 @@ public class BookingController {
         return bookingService.findUpcomingRoomBookings(id);
     }
 
+
+    @GetMapping("/{day}/{month}")
+    @ResponseStatus(HttpStatus.OK)
+    List<Booking> findFreeBookingByDate (@PathVariable int day,@PathVariable int month){
+        return bookingService.findBookingByDate(day,month);
+    }
+
     @GetMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getallUserBookings

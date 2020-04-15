@@ -46,6 +46,10 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> findRoomBookings(int id) {
         return bookingRepo.findRoomBookings(id);
     }
+    @Override
+    public List<Booking> findBookingByDate(int day, int month) {
+        return bookingRepo.findBookingByDate(day,month);
+    }
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
