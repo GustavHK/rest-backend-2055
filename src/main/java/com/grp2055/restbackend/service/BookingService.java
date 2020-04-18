@@ -5,12 +5,12 @@ package com.grp2055.restbackend.service;
         import java.util.List;
 
 public interface BookingService {
-    Booking findBookingById(int id);
+    Booking findBookingById(int bookingid);
     List<Booking> findAllBookings();
-    List<Booking> findUserBookings(int id);
-    List<Booking> findUpcomingUserBookings(int id);
-    List<Booking> findUpcomingRoomBookings(int id);
-    List<Booking> findRoomBookings(int id);
+    List<Booking> findUserBookings(int userid);
+    List<Booking> findUpcomingUserBookings(int userid);
+    List<Booking> findUpcomingRoomBookings(int roomid);
+    List<Booking> findRoomBookings(int roomid);
     List<Booking> findBookingByDate(int day,int month);
     Booking saveBooking(Booking booking);
     Booking editBooking(Booking booking);

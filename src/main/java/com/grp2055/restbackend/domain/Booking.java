@@ -2,15 +2,14 @@ package com.grp2055.restbackend.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(name="booking")
-@Embeddable
 public class Booking extends BaseEntity{
     @Column(name = "timeblock")
     int timeblock;
@@ -18,8 +17,11 @@ public class Booking extends BaseEntity{
     @Column(name = "room_id")
     int roomId;
 
-    @Column(name="user_id")
-    int userId;
+    @Column(name= "user_id")
+    int userid;
+
+    @Column(name ="username")
+    String username;
 
     @Column(name="month")
     int month;
@@ -35,8 +37,8 @@ public class Booking extends BaseEntity{
         super(); // Henter id fra baeentity
     }
 
-    public Booking (int userId){
+    public Booking (int userid){
         this(); // Henter id fra Booking() uden argumenter, hvis klassen instantieres her fra.
-        this.userId = userId;
+        this.userid = userid;
     }
 }

@@ -2,6 +2,7 @@ package com.grp2055.restbackend.service;
 
 import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.repositories.BookingRepo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,13 +29,13 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> findUserBookings(int id) {
-        return bookingRepo.findBookingsByUserId(id);
+    public List<Booking> findUserBookings(int userid) {
+        return bookingRepo.findBookingsByUserid(userid);
     }
 
     @Override
-    public List<Booking> findUpcomingUserBookings(int id) {
-        return bookingRepo.findUserUpcomingBookings(id);
+    public List<Booking> findUpcomingUserBookings(int userid) {
+        return bookingRepo.findUserUpcomingBookings(userid);
     }
 
     @Override
@@ -74,9 +75,14 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
+
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
     public void deleteBooking(int id) {
         bookingRepo.deleteById(id);
+        System.out.println("hej");
     }
+
+
+
 }

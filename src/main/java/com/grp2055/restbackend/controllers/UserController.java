@@ -4,7 +4,9 @@ package com.grp2055.restbackend.controllers;
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    //GET
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User getUserById(@PathVariable int id){
@@ -31,27 +34,26 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    /*
-    @PostMapping("/{id}/addbooking") // måske forkert da man ikke kender det id man skal bruge?
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addBooking(@PathVariable int id, @RequestBody Booking booking){
-        userService.findUserById(id).addBooking(booking.getId());
+    //POST
+    @PostMapping("/newuser")
+    @ResponseStatus(HttpStatus.OK)
+    public User createNewUser(@RequestBody User user){
+        return userService.createNewUser(user);
     }
-     */
 
+    //PUT
+    @PutMapping()
+    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
+    public User editUser(@RequestBody User user){
+        return userService.editUser(user);
+    }
+
+    //DELETE
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     boolean deleteUser(@PathVariable int id){
         userService.deleteUser(id);
         return true;
     }
-
-    @PutMapping()
-    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
-    public User editUser(@RequestBody User user){
-        return userService.editUser(user);
-
-    }
-
-
 }

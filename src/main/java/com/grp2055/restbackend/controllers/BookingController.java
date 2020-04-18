@@ -3,7 +3,9 @@ package com.grp2055.restbackend.controllers;
 
 import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.service.BookingService;
+import com.sun.org.apache.xpath.internal.objects.XString;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public class BookingController {
     public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
+
+    //GET
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getAllBookings(){
@@ -27,18 +31,6 @@ public class BookingController {
     @ResponseStatus(HttpStatus.OK)
     public Booking getBookingById(@PathVariable int id){
         return bookingService.findBookingById(id);
-    }
-
-    @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
-    public Booking createBooking(@RequestBody Booking booking){
-        return bookingService.saveBooking(booking);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public void deleteBooking(@PathVariable int id){
-        bookingService.deleteBooking(id);
     }
 
     @GetMapping("/room/{id}")
@@ -54,33 +46,51 @@ public class BookingController {
         return bookingService.findUpcomingRoomBookings(id);
     }
 
-
     @GetMapping("/{day}/{month}")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> findFreeBookingByDate (@PathVariable int day,@PathVariable int month){
         return bookingService.findBookingByDate(day,month);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/user/{userid}")
     @ResponseStatus(HttpStatus.OK)
-    List<Booking> getallUserBookings
-            (@PathVariable int id){
-        return  bookingService.findUserBookings(id);
+    List<Booking> getUserBookings(@PathVariable Integer userid){
+        System.out.println("Hej");
+        return  bookingService.findUserBookings(userid);
     }
 
     @GetMapping("/user/{id}/upcoming")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getUserUpcomingMeetings
-            (@PathVariable int id){
-        return bookingService.findUpcomingUserBookings(id);
+            (@PathVariable int userid){
+        return bookingService.findUpcomingUserBookings(userid);
     }
 
+    //Post
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
+    public Booking createBooking(@RequestBody Booking booking){
+        return bookingService.saveBooking(booking);
+    }
+
+    //PUT
     @PutMapping()
     @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
     public Booking editBooking(@RequestBody Booking booking){
         return bookingService.editBooking(booking);
-
     }
+
+    //DELETE
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deleteBooking(@PathVariable int id){
+        bookingService.deleteBooking(id);
+    }
+
+
+
+
 
 
 

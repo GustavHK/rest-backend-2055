@@ -24,8 +24,8 @@ public class FrontpageController {
 
         return "<p> Velkommen til vores REST-API for lokale booking. </p>" +
                 "<p>Indtast en af følgende links for at navigere rundt.</p>"+
-                "Brugere: <a href=\""+url+"/users\">/users</a> <br>"+
-                "Bookings: <a href=\""+url+"/bookings\">/bookings</a> <br>"+
-                "Lokaler: <a href=\""+url+"/rooms\">/rooms</a>";
+                "Brugere: <a href=\""+url+"users\">/users</a> <br>"+
+                "Bookings: <a href=\""+url+"bookings\">/bookings</a> <br>"+
+                "Lokaler: <a href=\""+url+"rooms\">/rooms</a>";
     }
 }

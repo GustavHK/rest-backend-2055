@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name="room")
 public class Room extends BaseEntity {
 
+
     @Column(name = "size")
     private int size;
 

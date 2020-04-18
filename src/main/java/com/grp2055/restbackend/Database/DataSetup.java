@@ -5,11 +5,15 @@ package com.grp2055.restbackend.Database;
 
 import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.domain.Room;
+import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.repositories.BookingRepo;
 import com.grp2055.restbackend.repositories.RoomRepo;
 import com.grp2055.restbackend.repositories.UserRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.Set;
 
 //Klasse til at lave falsk data så SQL forbindelse ikke behøves endnu
 
@@ -32,8 +36,9 @@ public class DataSetup implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //Manuel Brugeroprettelse
-        //User user1 = new User("Asger", "Åkerman");
-        //userRepo.save(user1);
+
+      // User user1 = new User("s180000", "Hans", "Hansen", "123", "ROLE_REG");
+      //  userRepo.save(user1);
 
         //Manuel rumoprettelse
         //Room room = new Room(5);
