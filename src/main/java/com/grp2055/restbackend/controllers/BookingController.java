@@ -29,20 +29,17 @@ public class BookingController {
         return bookingService.findBookingById(id);
     }
 
-
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
     public Booking createBooking(@RequestBody Booking booking){
         return bookingService.saveBooking(booking);
     }
 
-
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteBooking(@PathVariable int id){
         bookingService.deleteBooking(id);
     }
-
 
     @GetMapping("/room/{id}")
     @ResponseStatus(HttpStatus.OK)

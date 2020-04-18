@@ -32,7 +32,7 @@ public class Booking extends BaseEntity{
 
 
     protected Booking(){
-    super(); // Henter id fra baeentity
+        super(); // Henter id fra baeentity
     }
 
     public Booking (int userId){

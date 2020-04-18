@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
         if (userRepo.existsById(user.getId())){
             return userRepo.save(user);
         }
+
         else
         {
             System.out.println("No user with this id exist");

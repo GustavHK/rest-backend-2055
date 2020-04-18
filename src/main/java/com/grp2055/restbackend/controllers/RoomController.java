@@ -17,7 +17,6 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<Room> getAllRooms(){
@@ -47,8 +46,6 @@ public class RoomController {
     List<Room> find_max(@PathVariable int size){
         return roomService.findBySizeLessThan(size);
     }
-
-
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

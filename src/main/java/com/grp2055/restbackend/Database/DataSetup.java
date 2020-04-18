@@ -18,28 +18,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataSetup implements CommandLineRunner {
 
-            private final BookingRepo bookingRepo;
-            private final RoomRepo roomRepo;
-            private final UserRepo userRepo;
+    private final BookingRepo bookingRepo;
+    private final RoomRepo roomRepo;
+    private final UserRepo userRepo;
 
-            public DataSetup(BookingRepo bookingRepo, RoomRepo roomRepo, UserRepo userRepo) {
-                this.bookingRepo = bookingRepo;
-                this.roomRepo = roomRepo;
-                this.userRepo = userRepo;
-            }
+    public DataSetup(BookingRepo bookingRepo, RoomRepo roomRepo, UserRepo userRepo) {
+        this.bookingRepo = bookingRepo;
+        this.roomRepo = roomRepo;
+        this.userRepo = userRepo;
+    }
 
 
-            @Override
-            public void run(String... args) throws Exception {
-                //Manuel Brugeroprettelse
-                //User user1 = new User("Asger", "Åkerman");
-                //userRepo.save(user1);
+    @Override
+    public void run(String... args) throws Exception {
+        //Manuel Brugeroprettelse
+        //User user1 = new User("Asger", "Åkerman");
+        //userRepo.save(user1);
 
-                //Manuel rumoprettelse
-                //Room room = new Room(5);
-                // roomRepo.save(room);
+        //Manuel rumoprettelse
+        //Room room = new Room(5);
+        // roomRepo.save(room);
 
-                //Manuel bookingoprettelse
+        //Manuel bookingoprettelse
        /*         Booking booking = new Booking(userRepo.getOne(1).getId());
                 booking.setYear(2019);
                 booking.setMonth(12);

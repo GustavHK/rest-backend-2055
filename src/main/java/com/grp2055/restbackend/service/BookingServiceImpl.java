@@ -29,7 +29,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Booking> findUserBookings(int id) {
-        return bookingRepo.findBookingsByuserId(id);
+        return bookingRepo.findBookingsByUserId(id);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Booking> findRoomBookings(int id) {
-        return bookingRepo.findRoomBookings(id);
+        return bookingRepo.findBookingsByRoomId(id);
     }
     @Override
     public List<Booking> findBookingByDate(int day, int month) {
@@ -79,7 +79,4 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(int id) {
         bookingRepo.deleteById(id);
     }
-
-
-
 }

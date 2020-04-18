@@ -11,16 +11,14 @@ import java.util.List;
 @Repository
 public interface BookingRepo extends JpaRepository<Booking, Integer> {
 
-    List<Booking> findBookingsByuserId(int id);
+    List<Booking> findBookingsByUserId(int id);
+    List<Booking> findBookingsByRoomId(int id);
 
-    @Query(
-            value = "SELECT * FROM booking WHERE room_id = ?;",
-            nativeQuery = true)
-    List<Booking> findRoomBookings (int id);
+
 
     @Query(
             value = "SELECT * FROM booking WHERE day = ? AND month = ?;",
-            nativeQuery = true)
+            nativeQuery = true) // Skal der ikke år på?
     List<Booking> findBookingByDate(int day, int month);
 
 

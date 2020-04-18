@@ -20,7 +20,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
 
     public Room findRoomById(int id) {
-      return roomRepo.findById(id).get();
+        return roomRepo.findById(id).get();
     }
 
     @Override
@@ -57,6 +57,7 @@ public class RoomServiceImpl implements RoomService {
             return null;
         }
 }
+
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
     public Room createNewRoom(Room room) {
