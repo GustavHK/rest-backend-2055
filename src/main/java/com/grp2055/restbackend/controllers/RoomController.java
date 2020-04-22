@@ -46,7 +46,6 @@ public class RoomController {
 
     //POST
     @PostMapping()
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     Room createNewRoom(@RequestBody Room room){
         return roomService.createNewRoom(room);
@@ -63,7 +62,6 @@ public class RoomController {
 
     //DELETE
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     boolean deleteRoom(@PathVariable int id){
         return roomService.deleteRoom(id);

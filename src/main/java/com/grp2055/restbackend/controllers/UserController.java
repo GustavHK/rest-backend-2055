@@ -50,7 +50,6 @@ public class UserController {
 
     //DELETE
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     boolean deleteUser(@PathVariable int id){
         userService.deleteUser(id);

@@ -9,30 +9,40 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 public interface BookingRepo extends JpaRepository<Booking, Integer> {
 
     List<Booking> findBookingsByUserid(int userid);
     List<Booking> findBookingsByRoomId(int id);
 
+    @Query (
+            value = "SELECT id from user WHERE username = ?", nativeQuery = true)
+    int findBookingUserId(String username);
+
     @Query(
             value = "SELECT * FROM booking WHERE day = ? AND month = ?;",
-            nativeQuery = true) // Skal der ikke år på?
+            nativeQuery = true)
+        // Skal der ikke år på?
     List<Booking> findBookingByDate(int day, int month);
 
     @Query(
             value = "SELECT * FROM booking  WHERE username = ? AND  year >= YEAR(CURRENT_DATE) " +
                     "and month >= MONTH(CURRENT_DATE)\n" +
-                    "and CASE WHEN month = MONTH(CURRENT_DATE) THEN day >= DAY(CURRENT_DATE)\n"+
+                    "and CASE WHEN month = MONTH(CURRENT_DATE) THEN day >= DAY(CURRENT_DATE)\n" +
                     "ELSE any_value(day) end",
             nativeQuery = true)
     List<Booking> findUserUpcomingBookings(int userid);
+
     @Query(
             value = "SELECT * FROM booking  WHERE room_id = ? AND  year >= YEAR(CURRENT_DATE) " +
                     "and month >= MONTH(CURRENT_DATE)\n" +
-                    "and CASE WHEN month = MONTH(CURRENT_DATE) THEN day >= DAY(CURRENT_DATE)\n"+
+                    "and CASE WHEN month = MONTH(CURRENT_DATE) THEN day >= DAY(CURRENT_DATE)\n" +
                     "ELSE any_value(day) end",
             nativeQuery = true)
-    List<Booking> findRoomUpcomingBookings(int id);}
+    List<Booking> findRoomUpcomingBookings(int id);
 
+
+    //Tjekker om brugeren der deleter enten er owneren af bookingen eller en admin, ellers kan man ikke slette
+    @PreAuthorize("@bookingRepo.getOne(#id).username.equals(authentication.name) or hasRole('ROLE_ADIMN')")
+    void deleteBookingById(@Param("id") int id);
+}

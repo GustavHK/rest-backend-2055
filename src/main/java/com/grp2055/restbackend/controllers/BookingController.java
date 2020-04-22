@@ -1,11 +1,13 @@
 package com.grp2055.restbackend.controllers;
 
 
+import com.grp2055.restbackend.config.AuthenticationDetails;
 import com.grp2055.restbackend.domain.Booking;
 import com.grp2055.restbackend.service.BookingService;
 import com.sun.org.apache.xpath.internal.objects.XString;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +17,10 @@ import java.util.List;
 public class BookingController {
     public static final String URL = "/bookings";
     private final BookingService bookingService;
-
+    AuthenticationDetails details;
     public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
+        details = new AuthenticationDetails();
     }
 
     //GET
@@ -68,7 +71,11 @@ public class BookingController {
     //Post
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
-    public Booking createBooking(@RequestBody Booking booking){
+    public Booking createBooking(@RequestBody Booking booking)
+    {
+
+        booking.setUsername(details.getUserName());
+        booking.setUserid(bookingService.getUserId(details.getUserName()));
         return bookingService.saveBooking(booking);
     }
 
@@ -80,12 +87,13 @@ public class BookingController {
     }
 
     //DELETE
+
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteBooking(@PathVariable int id){
         bookingService.deleteBooking(id);
     }
+
 
 
 

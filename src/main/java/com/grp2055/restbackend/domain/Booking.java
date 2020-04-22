@@ -1,10 +1,17 @@
 package com.grp2055.restbackend.domain;
 
+import com.grp2055.restbackend.repositories.BookingRepo;
+import com.grp2055.restbackend.repositories.UserRepo;
+import com.grp2055.restbackend.service.RoomService;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 
+import javax.jws.Oneway;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -20,6 +27,7 @@ public class Booking extends BaseEntity{
 
     @Column(name= "user_id")
     int userid;
+
 
     @Column(name ="username")
     String username;
@@ -39,8 +47,12 @@ public class Booking extends BaseEntity{
     }
 
     public Booking (int userid){
+
+
         this(); // Henter id fra Booking() uden argumenter, hvis klassen instantieres her fra.
         this.userid = userid;
+
+
     }
 
 }

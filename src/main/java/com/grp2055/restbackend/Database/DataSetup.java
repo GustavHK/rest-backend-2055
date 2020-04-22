@@ -36,16 +36,15 @@ public class DataSetup implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //Manuel Brugeroprettelse
-
-     //  User user1 = new User("s180000", "Hans", "Hansen", "123", "ROLE_REG");
-     //  userRepo.save(user1);
+        //User user1 = new User("s188888", "Testmand", "1", "123", "ROLE_USER");
+        //userRepo.save(user1);
 
         //Manuel rumoprettelse
         //Room room = new Room(5);
         // roomRepo.save(room);
 
         //Manuel bookingoprettelse
-     /*           Booking booking = new Booking(userRepo.getOne(19).getId());
+                /*Booking booking = new Booking(userRepo.getOne(22).getId());
                 booking.setYear(2020);
                 booking.setMonth(5);
                 booking.setDay(22);
