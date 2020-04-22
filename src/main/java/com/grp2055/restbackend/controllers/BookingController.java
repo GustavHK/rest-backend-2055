@@ -46,7 +46,7 @@ public class BookingController {
         return bookingService.findUpcomingRoomBookings(id);
     }
 
-    @GetMapping("/{day}/{month}")
+    @GetMapping("/{day}/{month}") // der skal år på
     @ResponseStatus(HttpStatus.OK)
     List<Booking> findFreeBookingByDate (@PathVariable int day,@PathVariable int month){
         return bookingService.findBookingByDate(day,month);
@@ -55,7 +55,6 @@ public class BookingController {
     @GetMapping("/user/{userid}")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getUserBookings(@PathVariable Integer userid){
-        System.out.println("Hej");
         return  bookingService.findUserBookings(userid);
     }
 
@@ -67,7 +66,7 @@ public class BookingController {
     }
 
     //Post
-    @PostMapping()
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
     public Booking createBooking(@RequestBody Booking booking){
         return bookingService.saveBooking(booking);

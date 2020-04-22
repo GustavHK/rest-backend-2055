@@ -80,7 +80,6 @@ public class BookingServiceImpl implements BookingService {
     @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)
     public void deleteBooking(int id) {
         bookingRepo.deleteById(id);
-        System.out.println("hej");
     }
 
 

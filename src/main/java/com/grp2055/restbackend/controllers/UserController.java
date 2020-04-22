@@ -6,7 +6,7 @@ import com.grp2055.restbackend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
+
 
 import java.util.List;
 

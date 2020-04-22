@@ -16,9 +16,6 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
     List<Booking> findBookingsByUserid(int userid);
     List<Booking> findBookingsByRoomId(int id);
 
-    @Override
-    void deleteById(Integer id);
-
     @Query(
             value = "SELECT * FROM booking WHERE day = ? AND month = ?;",
             nativeQuery = true) // Skal der ikke år på?
@@ -31,7 +28,6 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
                     "ELSE any_value(day) end",
             nativeQuery = true)
     List<Booking> findUserUpcomingBookings(int userid);
-
     @Query(
             value = "SELECT * FROM booking  WHERE room_id = ? AND  year >= YEAR(CURRENT_DATE) " +
                     "and month >= MONTH(CURRENT_DATE)\n" +

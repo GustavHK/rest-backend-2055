@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="booking")
 public class Booking extends BaseEntity{
+
     @Column(name = "timeblock")
     int timeblock;
 
@@ -41,4 +42,5 @@ public class Booking extends BaseEntity{
         this(); // Henter id fra Booking() uden argumenter, hvis klassen instantieres her fra.
         this.userid = userid;
     }
+
 }

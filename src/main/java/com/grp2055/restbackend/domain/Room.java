@@ -1,6 +1,5 @@
 package com.grp2055.restbackend.domain;
 
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,6 +16,8 @@ public class Room extends BaseEntity {
 
     @Column(name = "size")
     private int size;
+
+
 
     protected Room() {
         super(); // Henter id fra baseentity

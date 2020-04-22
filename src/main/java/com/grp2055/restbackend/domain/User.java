@@ -21,10 +21,6 @@ public class User extends BaseEntity {
     protected User() {
         super(); // Henter id fra baseentity
     }
-
-
-
-
     public User(String username, String firstName, String lastName, String password, String role){
         this();
         this.username = username;
@@ -47,7 +43,7 @@ public class User extends BaseEntity {
     String lastName;
 
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     @JsonIgnore
     public String role;
 

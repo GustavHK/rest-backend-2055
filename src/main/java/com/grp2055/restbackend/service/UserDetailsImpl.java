@@ -3,6 +3,7 @@ package com.grp2055.restbackend.service;
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyUtils;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
