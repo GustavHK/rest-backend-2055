@@ -15,7 +15,7 @@ public interface BookingService {
     int getUserId(String username);
     List<Booking> findUpcomingRoomBookings(int roomid);
     List<Booking> findRoomBookings(int roomid);
-    List<Booking> findBookingByDate(int day,int month);
+    List<Booking> findBookingByDate(int day,int month, int year);
     Booking saveBooking(Booking booking);
     Booking editBooking(Booking booking);
 

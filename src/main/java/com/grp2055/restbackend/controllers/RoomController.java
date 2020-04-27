@@ -3,7 +3,6 @@ package com.grp2055.restbackend.controllers;
 import com.grp2055.restbackend.domain.Room;
 import com.grp2055.restbackend.service.RoomService;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

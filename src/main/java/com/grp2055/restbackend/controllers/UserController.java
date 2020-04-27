@@ -3,17 +3,19 @@ package com.grp2055.restbackend.controllers;
 
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
+import com.sun.org.apache.xpath.internal.objects.XNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 @RestController
 @RequestMapping(UserController.URL)
 public class UserController {
-    public static final String URL = "/users";
+    public static final String URL = "/api/users";
 
     private final UserService userService;
 
@@ -22,6 +24,7 @@ public class UserController {
     }
 
     //GET
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User getUserById(@PathVariable int id){
@@ -38,7 +41,19 @@ public class UserController {
     @PostMapping("/newuser")
     @ResponseStatus(HttpStatus.OK)
     public User createNewUser(@RequestBody User user){
-        return userService.createNewUser(user);
+        User returnUser = new User(user.getUsername(),user.getFirstName(),user.getLastName(), user.getPassword(),"ROLE_USER");
+        return userService.createNewUser(returnUser);
+    }
+
+    //POST
+    @PermitAll
+    @PostMapping("/authenticate")
+    @ResponseStatus(HttpStatus.OK)
+    public User authenticate(@RequestBody String username, @RequestBody String password){
+        if (userService.findUserByUsername(username) != null) {
+            return userService.findUserByUsername(username);
+        }
+        else return null;
     }
 
     //PUT

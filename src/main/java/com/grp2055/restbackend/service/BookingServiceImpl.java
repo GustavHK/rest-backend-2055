@@ -57,8 +57,8 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepo.findBookingsByRoomId(id);
     }
     @Override
-    public List<Booking> findBookingByDate(int day, int month) {
-        return bookingRepo.findBookingByDate(day,month);
+    public List<Booking> findBookingByDate(int day, int month, int year) {
+        return bookingRepo.findBookingByDate(day,month,year);
     }
 
     @Override

@@ -1,0 +1,14 @@
+Teknologier:
+Spring: Vi bruger spring til at bygge vores REST api.
+SQL: Vi anvender SQL til at opbevare informationer angående brugere, bookninger og lokaler.
+Angular: Anvendes til at udvikle frontend programmet til vores booking.
+
+Status på projektet :
+Vores REST API og SQL database virker udmærket, hvor man vha. forskellige HTTP requests bla. kan hente og oprette bookinger, der så lagres i SQL. Vi skal have integreret brugerautorisationsmodulet med vores API, således at ens personlige login virker med vores program.
+
+Udfordringer:
+Vi har svært ved at tilføje en http header i angular, som indeholder login informationer så man kan få adgang til rest-api'en, det dog mere et fron-end problem.
+
+Angiv også URL’er og links hvis der er et kørende system.
+Rest-api (uden autorisering) - i vores projekt som afleveres er autorisering koblet til. log ind med (s180077 og 123)
+http://ec2-3-20-238-191.us-east-2.compute.amazonaws.com:8082/

@@ -49,7 +49,6 @@ public class User extends BaseEntity {
 
 
     @Column(name ="password")
-    @JsonIgnore
     private String password;
 
     public void setPassword(String password) {

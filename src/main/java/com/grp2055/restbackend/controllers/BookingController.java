@@ -49,10 +49,10 @@ public class BookingController {
         return bookingService.findUpcomingRoomBookings(id);
     }
 
-    @GetMapping("/{day}/{month}") // der skal år på
+    @GetMapping("/findByDate/{day}/{month}/{year}") // der skal år på
     @ResponseStatus(HttpStatus.OK)
-    List<Booking> findFreeBookingByDate (@PathVariable int day,@PathVariable int month){
-        return bookingService.findBookingByDate(day,month);
+    List<Booking> findBookingsByDate (@PathVariable int day,@PathVariable int month, @PathVariable int year){
+        return bookingService.findBookingByDate(day,month,year);
     }
 
     @GetMapping("/user/{userid}")
@@ -61,7 +61,7 @@ public class BookingController {
         return  bookingService.findUserBookings(userid);
     }
 
-    @GetMapping("/user/{id}/upcoming")
+    @GetMapping("/user/{userid}/upcoming")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getUserUpcomingMeetings
             (@PathVariable int userid){
