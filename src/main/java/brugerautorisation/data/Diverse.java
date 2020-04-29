@@ -1,4 +1,4 @@
-package Brugerautorisation.data;
+package brugerautorisation.data;
 
 import java.lang.reflect.Field;
 

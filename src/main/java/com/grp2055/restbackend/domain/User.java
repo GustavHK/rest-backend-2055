@@ -18,7 +18,7 @@ import java.util.Set;
 @Data
 @Table(name="user")
 public class User extends BaseEntity {
-    protected User() {
+    public User() {
         super(); // Henter id fra baseentity
     }
     public User(String username, String firstName, String lastName, String password, String role){

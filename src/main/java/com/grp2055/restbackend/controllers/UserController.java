@@ -1,15 +1,15 @@
 package com.grp2055.restbackend.controllers;
 
 
+import brugerautorisation.data.Bruger;
+import brugerautorisation.transport.rmi.Brugeradmin;
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
-import com.sun.org.apache.xpath.internal.objects.XNull;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-
 import javax.annotation.security.PermitAll;
+import java.rmi.Naming;
 import java.util.List;
 
 @RestController
@@ -24,7 +24,6 @@ public class UserController {
     }
 
     //GET
-
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User getUserById(@PathVariable int id){
@@ -43,6 +42,50 @@ public class UserController {
     public User createNewUser(@RequestBody User user){
         User returnUser = new User(user.getUsername(),user.getFirstName(),user.getLastName(), user.getPassword(),"ROLE_USER");
         return userService.createNewUser(returnUser);
+    }
+
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean login (@RequestBody Login login) throws Exception {
+
+        Brugeradmin ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
+        try {
+
+            Bruger brugerLogin = ba.hentBruger(login.getUsername(), login.getPassword());
+
+            if(userService.findUserByUsername(login.getUsername()) == null ){
+                User user = new User();
+                user.setUsername(login.getUsername());
+                user.setPassword(login.getPassword());
+                createNewUser(user);
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+
+            System.out.println(login.getPassword());
+            System.out.println(login.getUsername());
+            System.out.println("Login not authorized");
+        }
+        return false;
+    }
+    public static class Login{
+        static String username;
+        static String password;
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
     }
 
     //POST
@@ -70,4 +113,8 @@ public class UserController {
         userService.deleteUser(id);
         return true;
     }
+
+
+
+
 }
