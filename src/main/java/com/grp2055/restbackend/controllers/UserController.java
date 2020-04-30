@@ -3,9 +3,7 @@ package com.grp2055.restbackend.controllers;
 
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
-import com.sun.org.apache.xpath.internal.objects.XNull;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(UserController.URL)
 public class UserController {
-    public static final String URL = "/api/users";
+    static final String URL = "/users";
 
     private final UserService userService;
 
@@ -44,6 +42,7 @@ public class UserController {
         User returnUser = new User(user.getUsername(),user.getFirstName(),user.getLastName(), user.getPassword(),"ROLE_USER");
         return userService.createNewUser(returnUser);
     }
+
 
     //POST
     @PermitAll

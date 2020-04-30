@@ -8,6 +8,7 @@ import com.sun.org.apache.xpath.internal.objects.XString;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping(BookingController.URL)
 public class BookingController {
-    public static final String URL = "/bookings";
+    static final String URL = "/bookings";
     private final BookingService bookingService;
     AuthenticationDetails details;
     public BookingController(BookingService bookingService) {
@@ -66,6 +67,18 @@ public class BookingController {
     List<Booking> getUserUpcomingMeetings
             (@PathVariable int userid){
         return bookingService.findUpcomingUserBookings(userid);
+    }
+
+    @GetMapping("/floor/{floor}/upcoming")
+    @ResponseStatus(HttpStatus.OK)
+    List<Booking> findUpcomingBookingsByFloor(@PathVariable int floor){
+        return bookingService.findUpcomingBookingsByFloor(floor);
+    }
+    @GetMapping("/floor/{floor}/{year}/{month}/{day}")
+    @ResponseStatus(HttpStatus.OK)
+    List<Booking> findBookingByFloorAndDate(@PathVariable int floor, @PathVariable int year,
+                                            @PathVariable int month, @PathVariable int day){
+        return bookingService.findBookingsByDateAndFloor(floor,year,month,day);
     }
 
     //Post

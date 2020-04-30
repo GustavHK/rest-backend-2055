@@ -17,6 +17,9 @@ public class Room extends BaseEntity {
     @Column(name = "size")
     private int size;
 
+    @Column(name = "floor")
+    private int floor;
+
 
 
     protected Room() {

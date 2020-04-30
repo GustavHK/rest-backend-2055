@@ -48,6 +48,7 @@ public class User extends BaseEntity {
     public String role;
 
 
+    @JsonIgnore
     @Column(name ="password")
     private String password;
 

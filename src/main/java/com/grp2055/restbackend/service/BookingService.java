@@ -18,7 +18,8 @@ public interface BookingService {
     List<Booking> findBookingByDate(int day,int month, int year);
     Booking saveBooking(Booking booking);
     Booking editBooking(Booking booking);
-
+    List<Booking> findUpcomingBookingsByFloor(int floor);
+    List<Booking> findBookingsByDateAndFloor(int floor,int year,int month, int day);
     void deleteBooking(int id);
 
 

@@ -84,6 +84,16 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
+    @Override
+    public List<Booking> findUpcomingBookingsByFloor(int floor) {
+        return bookingRepo.findUpcomingBookingsByFloor(floor);
+    }
+
+    @Override
+    public List<Booking> findBookingsByDateAndFloor(int floor, int year, int month, int day) {
+        return bookingRepo.findBookingsByFloorAndDate(floor,year,month,day);
+    }
+
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE, readOnly = false)

@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping(RoomController.URL)
 public class RoomController {
-    public static final String URL = "/rooms";
+    static final String URL = "/rooms";
     private final RoomService roomService;
 
     public RoomController(RoomService roomService) {
