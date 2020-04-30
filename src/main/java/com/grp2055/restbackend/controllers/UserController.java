@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(UserController.URL)
 public class UserController {
-    public static final String URL = "/api/users";
+    public static final String URL = "/users";
 
     private final UserService userService;
 
@@ -24,6 +24,7 @@ public class UserController {
     }
 
     //GET
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User getUserById(@PathVariable int id){
