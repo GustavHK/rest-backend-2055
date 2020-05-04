@@ -3,6 +3,7 @@ package com.grp2055.restbackend.controllers;
 
 import brugerautorisation.data.Bruger;
 import brugerautorisation.transport.rmi.Brugeradmin;
+import com.grp2055.restbackend.domain.Login;
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,12 @@ public class UserController {
         return userService.findUserById(id);
     }
 
+    @GetMapping("/username/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public User getUserByUsername(@PathVariable String username){
+        return userService.findUserByUsername(username);
+    }
+
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<User> getAllUsers(){
@@ -45,49 +52,7 @@ public class UserController {
         return userService.createNewUser(returnUser);
     }
 
-    @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
-    public boolean login (@RequestBody Login login) throws Exception {
 
-        Brugeradmin ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
-        try {
-
-            Bruger brugerLogin = ba.hentBruger(login.getUsername(), login.getPassword());
-
-            if(userService.findUserByUsername(login.getUsername()) == null ){
-                User user = new User();
-                user.setUsername(login.getUsername());
-                user.setPassword(login.getPassword());
-                createNewUser(user);
-            }
-            return true;
-        } catch (IllegalArgumentException e) {
-
-            System.out.println(login.getPassword());
-            System.out.println(login.getUsername());
-            System.out.println("Login not authorized");
-        }
-        return false;
-    }
-    public static class Login{
-        static String username;
-        static String password;
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-    }
 
     //POST
     @PermitAll

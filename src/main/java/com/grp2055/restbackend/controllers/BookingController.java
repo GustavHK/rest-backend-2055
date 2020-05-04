@@ -100,7 +100,6 @@ public class BookingController {
     }
 
     //DELETE
-
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteBooking(@PathVariable int id){

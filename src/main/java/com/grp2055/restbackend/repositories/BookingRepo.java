@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.awt.print.Book;
 import java.util.List;
 
+
 @Repository
 public interface BookingRepo extends JpaRepository<Booking, Integer> {
 
@@ -43,7 +44,7 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
 
 
     //Tjekker om brugeren der deleter enten er owneren af bookingen eller en admin, ellers kan man ikke slette
-    @PreAuthorize("@bookingRepo.getOne(#id).username.equals(authentication.name) or hasRole('ROLE_ADIMN')")
+    @PreAuthorize("@bookingRepo.getOne(#id).username.equals(authentication.name) or hasRole('ROLE_ADMIN')")
     void deleteBookingById(@Param("id") int id);
 
 
