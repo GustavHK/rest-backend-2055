@@ -21,13 +21,14 @@ public class User extends BaseEntity {
     public User() {
         super(); // Henter id fra baseentity
     }
-    public User(String username, String firstName, String lastName, String password, String role){
+    public User(String username, String firstName, String lastName, String password, String role, String campusId){
         this();
         this.username = username;
         this.firstName=firstName;
         this.lastName = lastName;
         setPassword(password);
         this.role = role;
+        this.campusId = campusId;
     }
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
@@ -42,6 +43,8 @@ public class User extends BaseEntity {
     @Column(name = "last_name")
     String lastName;
 
+    @Column(name ="campus_id")
+    String campusId;
 
     @Column(name = "role", nullable = false)
     @JsonIgnore

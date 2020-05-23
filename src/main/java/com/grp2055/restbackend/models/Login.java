@@ -1,17 +1,12 @@
-package com.grp2055.restbackend.domain;
+package com.grp2055.restbackend.models;
 
 import javax.persistence.Column;
 
 
 
 public class Login {
-
-        @Column
         String username;
-
-        @Column
         String password;
-
 
     public String getUsername() {
         return username;

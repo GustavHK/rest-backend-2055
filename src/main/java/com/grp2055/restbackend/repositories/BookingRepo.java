@@ -27,12 +27,13 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
           List<Booking> findBookingByDate(int day, int month, int year);
 
     @Query(
-            value = "SELECT * FROM booking  WHERE user_id = ? AND  year >= YEAR(CURRENT_DATE) " +
+            value = "SELECT * FROM booking  WHERE username = ? AND  year >= YEAR(CURRENT_DATE) " +
                     "and month >= MONTH(CURRENT_DATE)\n" +
                     "and CASE WHEN month = MONTH(CURRENT_DATE) THEN day >= DAY(CURRENT_DATE)\n" +
-                    "ELSE any_value(day) end",
+                    "ELSE any_value(day) end " +
+                    "ORDER BY year , month, day",
             nativeQuery = true)
-    List<Booking> findUserUpcomingBookings(int userid);
+    List<Booking> findUserUpcomingBookings(String username);
 
     @Query(
             value = "SELECT * FROM booking  WHERE room_id = ? AND  year >= YEAR(CURRENT_DATE) " +

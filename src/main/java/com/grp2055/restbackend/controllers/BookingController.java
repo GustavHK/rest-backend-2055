@@ -62,11 +62,11 @@ public class BookingController {
         return  bookingService.findUserBookings(userid);
     }
 
-    @GetMapping("/user/{userid}/upcoming")
+    @GetMapping("/user/{username}/upcoming")
     @ResponseStatus(HttpStatus.OK)
     List<Booking> getUserUpcomingMeetings
-            (@PathVariable int userid){
-        return bookingService.findUpcomingUserBookings(userid);
+            (@PathVariable String username){
+        return bookingService.findUpcomingUserBookings(username);
     }
 
     @GetMapping("/floor/{floor}/upcoming")

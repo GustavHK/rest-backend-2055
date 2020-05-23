@@ -38,8 +38,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> findUpcomingUserBookings(int userid) {
-        return bookingRepo.findUserUpcomingBookings(userid);
+    public List<Booking> findUpcomingUserBookings(String username) {
+        return bookingRepo.findUserUpcomingBookings(username);
     }
 
     @Override

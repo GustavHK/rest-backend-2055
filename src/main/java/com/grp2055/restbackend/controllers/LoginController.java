@@ -2,13 +2,12 @@ package com.grp2055.restbackend.controllers;
 
 import brugerautorisation.data.Bruger;
 import brugerautorisation.transport.rmi.Brugeradmin;
-import com.grp2055.restbackend.domain.Login;
+import com.grp2055.restbackend.models.Login;
 import com.grp2055.restbackend.domain.User;
 import com.grp2055.restbackend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.PermitAll;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -39,6 +38,7 @@ public class LoginController {
                 user.setPassword(login.getPassword());
                 user.setFirstName(brugerLogin.fornavn);
                 user.setLastName(brugerLogin.efternavn);
+                user.setCampusId(brugerLogin.campusnetId);
                 user.setRole("ROLE_USER");
                 userService.createNewUser(user);
                 return true;

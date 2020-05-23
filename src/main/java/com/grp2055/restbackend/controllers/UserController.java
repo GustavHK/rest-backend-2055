@@ -3,14 +3,16 @@ package com.grp2055.restbackend.controllers;
 
 import brugerautorisation.data.Bruger;
 import brugerautorisation.transport.rmi.Brugeradmin;
-import com.grp2055.restbackend.domain.Login;
 import com.grp2055.restbackend.domain.User;
+import com.grp2055.restbackend.models.ChangePassword;
 import com.grp2055.restbackend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.PermitAll;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 @RestController
@@ -47,30 +49,35 @@ public class UserController {
     //POST
     @PostMapping("/newuser")
     @ResponseStatus(HttpStatus.OK)
-    public User createNewUser(@RequestBody User user){
-        User returnUser = new User(user.getUsername(),user.getFirstName(),user.getLastName(), user.getPassword(),"ROLE_USER");
+    public User createNewUser(@RequestBody User user) throws RemoteException, NotBoundException, MalformedURLException {
+        Brugeradmin ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
+        Bruger bruger = ba.hentBruger(user.getUsername(),user.getPassword());
+        User returnUser = new User(user.getUsername(),bruger.fornavn,bruger.efternavn, user.getPassword(),"ROLE_USER", bruger.campusnetId);
         return userService.createNewUser(returnUser);
     }
 
 
 
-    //POST
-    @PermitAll
-    @PostMapping("/authenticate")
+    @PutMapping("/newpassword")
     @ResponseStatus(HttpStatus.OK)
-    public User authenticate(@RequestBody String username, @RequestBody String password){
-        if (userService.findUserByUsername(username) != null) {
-            return userService.findUserByUsername(username);
+    public boolean changePassword(@RequestBody ChangePassword authdata) throws RemoteException, NotBoundException, MalformedURLException {
+        Brugeradmin ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
+
+
+        System.out.println(authdata.getUsername() + ": " + authdata.getCurrentPassword() + ": "+authdata.getNewPassword());
+
+        try {
+            ba.ændrAdgangskode(authdata.getUsername(),authdata.getCurrentPassword(), authdata.getNewPassword());
+            User user = userService.findUserByUsername(authdata.getUsername());
+            user.setPassword(authdata.getNewPassword());
+            userService.editUser(user);
+            return true;
+        } catch (IllegalArgumentException e){
+            System.out.println(e);
+            return false;
         }
-        else return null;
     }
 
-    //PUT
-    @PutMapping()
-    @ResponseStatus(HttpStatus.CREATED) // skal give anden responsestatus hvis den fejler med at create.
-    public User editUser(@RequestBody User user){
-        return userService.editUser(user);
-    }
 
     //DELETE
     @DeleteMapping("/{id}")
